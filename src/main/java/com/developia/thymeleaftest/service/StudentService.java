@@ -5,6 +5,7 @@ import com.developia.thymeleaftest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +27,12 @@ public class StudentService {
     }
 
     public List<Student> findAll() {
-        return studentRepository.findAll();
+        List<Student> students = new ArrayList<>();
+        try {
+            students = studentRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Exception occurs in findAll: " + e.getMessage());
+        }
+        return students;
     }
 }
